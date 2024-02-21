@@ -29,8 +29,7 @@ CROSS_LD_FLAGS += -Wl,--no-relax -specs=nosys.specs -specs=nano.specs -nostartfi
 
 #CROSS_LD_FLAGS += -lm
 
-CROSS_C_INCLUDES = $(CH32_STD_LIB_DIR)/peripheral/inc $(CH32_STD_LIB_DIR)/core \
-./screen-library-mcu/ch32v ./screen-library-mcu ./src \
+CROSS_C_INCLUDES = $(CH32_STD_LIB_DIR)/peripheral/inc $(CH32_STD_LIB_DIR)/core ./src
 
 OPENOCD_FLASH_COMMANDS = -c "program $< verify" -c wlink_reset_resume -c exit
 
