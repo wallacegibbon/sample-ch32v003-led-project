@@ -16,7 +16,7 @@ int main() {
 	GPIO_InitTypeDef gpio_init;
 
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	initialize_systick_interrupt();
+	systick_interrupt_init();
 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
 
