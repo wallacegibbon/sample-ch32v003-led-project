@@ -10,7 +10,7 @@ OPENOCD_ARGS = -f C:/MounRiver/MounRiver_Studio/toolchain/OpenOCD/bin/wch-riscv.
 
 #ARCH = -march=rv32imafc -mabi=ilp32f
 #ARCH = -march=rv32imac -mabi=ilp32
-ARCH = -march=rv32ec -mabi=ilp32e
+ARCH = -march=rv32ecxw -mabi=ilp32e
 
 CH32_STD_LIB_DIR = ../ch32-standard-library/ch32v00x
 #CH32_STD_LIB_DIR = $(HOME)/playground/ch32-standard-library/ch32v00x
@@ -34,4 +34,8 @@ CROSS_C_INCLUDES = $(CH32_STD_LIB_DIR)/peripheral/inc $(CH32_STD_LIB_DIR)/core .
 OPENOCD_FLASH_COMMANDS = -c "program $< verify" -c wlink_reset_resume -c exit
 
 include ./miscellaneous-makefiles/cross-gcc-mcu.mk
+
+target_detail: $(BUILD_DIR)/$(TARGET).elf
+	$(CROSS_OBJDUMP) -S -D -M xw $< > $<.lss
+	$(CROSS_SIZE) --radix=16 --format=SysV $<
 
